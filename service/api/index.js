@@ -1,12 +1,22 @@
 const dao = require('../../db/mysql/dao');
+const tools = require('../../lib/tools');
 
 class ApiService {
   static async login(account, password) {
     password = global.tools.MD5Encryption(password);
     const accountRes = await dao.AdminDao.getAdmin(account, password);
     if (accountRes) {
-      if (Object.is(accountRes.status, 1)) {
-        return accountRes;
+      const { id, status, nickname } = accountRes;
+      if (Object.is(status, 1)) {
+        const token = tools.generatorToken({ id, account });
+
+        return {
+          token,
+          account,
+          nickname,
+          status,
+          id,
+        };
       }
       throw new global.errs.LoginException('账号已被禁用，请联系平台管理员');
     } else {

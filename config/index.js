@@ -38,4 +38,8 @@ module.exports = {
     password: '123456',
     Db: 1,
   },
+  TOKEN: {
+    jwtSecret: 'ddztest',
+    tokenExpiresTime: 1000 * 60 * 60 * 24 * 7,
+  },
 };

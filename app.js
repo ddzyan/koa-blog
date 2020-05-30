@@ -6,8 +6,9 @@ const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const http = require('http');
 const cluster = require('cluster');
+const koajwt = require('koa-jwt');
 
-const { port, MAX_TIME } = require('./config');
+const { port, MAX_TIME, TOKEN } = require('./config');
 const catchError = require('./middlewares/exception');
 const InitManager = require('./lib/init');
 
@@ -16,8 +17,17 @@ const app = new Koa();
 // 初始化连接
 InitManager.beforeAppInit();
 
-// error handler
-onerror(app);
+// 添加跨域配置
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  if (ctx.method === 'OPTIONS') {
+    ctx.body = 200;
+  } else {
+    await next();
+  }
+});
 
 // middlewares
 app.use(bodyparser({
@@ -31,10 +41,17 @@ app.use(views(`${__dirname}/views`, {
   extension: 'pug',
 }));
 
+app.use(
+  koajwt({ secret: TOKEN.jwtSecret }).unless({
+    path: [/\/api\/v1\/admin\/login/],
+  }),
+);
+
 app.use(catchError);
 
 InitManager.afterAppInit(app);
-
+// error handler
+onerror(app);
 const server = http.createServer(app.callback());
 
 function onError(error) {
