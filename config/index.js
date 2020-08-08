@@ -1,7 +1,6 @@
 module.exports = {
   MAX_TIME: 1000,
   port: 3001,
-  MY_TOKEN: 'abcdefg',
   sequelizeConfig: {
     dialect: 'mysql', // 数据库类型
     host: '127.0.0.1',
@@ -39,7 +38,7 @@ module.exports = {
     db: 0,
   },
   TOKEN: {
-    jwtSecret: 'ddztest',
+    jwtSecret: 'hello-word',
     tokenExpiresTime: 1000 * 60 * 60 * 24 * 7,
   },
 };
