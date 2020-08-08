@@ -1,9 +1,8 @@
 const moment = require('moment');
-const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
-  const admin = sequelize.define(
-    'Admin',
+  const Admin = sequelize.define(
+    'admin',
     {
       id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -71,5 +70,5 @@ module.exports = (sequelize, DataTypes) => {
 
   // admin.associate = (models) => {};
 
-  return admin;
+  return Admin;
 };

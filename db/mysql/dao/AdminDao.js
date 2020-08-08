@@ -1,4 +1,4 @@
-const { Admin } = require('../model');
+const { Admin } = require('../models');
 
 class AdminDao {
   constructor() {
@@ -35,8 +35,14 @@ class AdminDao {
     } catch (error) {
       console.log(error);
       if (error.parent) {
-        const { parent: { sqlMessage, sql, stack } } = error;
-        throw new global.errs.SequelizeException({ msg: sqlMessage, sql, stack });
+        const {
+          parent: { sqlMessage, sql, stack },
+        } = error;
+        throw new global.errs.SequelizeException({
+          msg: sqlMessage,
+          sql,
+          stack,
+        });
       } else {
         throw error;
       }

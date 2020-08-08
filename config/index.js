@@ -6,8 +6,8 @@ module.exports = {
     dialect: 'mysql', // 数据库类型
     host: '127.0.0.1',
     port: 3306,
-    database: 'boblog',
-    username: 'root',
+    database: 'blog',
+    username: 'test',
     password: '123456',
     logging: (sql, timing) => {
       // 每次日志输出都会调用的函数，可以在此进行重写
@@ -36,7 +36,7 @@ module.exports = {
     host: '192.168.100.117',
     port: '6379',
     password: '123456',
-    Db: 1,
+    db: 0,
   },
   TOKEN: {
     jwtSecret: 'ddztest',

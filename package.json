@@ -6,10 +6,11 @@
     "start": "node app.js",
     "dev": "./node_modules/.bin/nodemon app.js",
     "prd": "pm2 start bin/www",
+    "clean":"rimraf ./node_modules",
+    "createSchema": "node ./db/mysql/sequelize_auto.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "debug": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
