@@ -9,7 +9,7 @@ const cluster = require('cluster');
 const koajwt = require('koa-jwt');
 
 const { port, MAX_TIME, TOKEN } = require('./config');
-const catchError = require('./middlewares/exception');
+const catchError = require('./middleware/exception');
 const InitManager = require('./lib/init');
 
 const app = new Koa();
@@ -29,7 +29,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-// middlewares
+// middleware
 app.use(bodyparser({
   enableTypes: ['json', 'form', 'text'],
 }));
@@ -140,6 +140,5 @@ process.on('uncaughtException', (error) => {
     console.log(error);
   }
 });
-
 
 module.exports = server;
