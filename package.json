@@ -1,12 +1,12 @@
 {
   "name": "koa-blog",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node app.js",
     "dev": "./node_modules/.bin/nodemon app.js",
     "prd": "pm2 start bin/www",
-    "clean":"rimraf ./node_modules",
+    "clean": "rm -rf ./node_modules",
     "createSchema": "node ./db/mysql/sequelize_auto.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
