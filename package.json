@@ -26,7 +26,7 @@
     "koa-views": "^6.3.0",
     "moment": "^2.27.0",
     "mysql2": "^2.1.0",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "require-directory": "^2.1.1",
     "sequelize": "^6.3.4"
   },
